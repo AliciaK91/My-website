@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Alicia Kailer - Site Reliability Engineer specializing in cloud infrastructure, reliability, and DevOps practices.">
+    <meta name="author" content="Alicia Kailer">
+    <title>Alicia Kailer | Site Reliability Engineer</title>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + Meyawo main styles -->
+    <link rel="stylesheet" href="assets/css/meyawo.css">
+    <!-- Professional SRE Theme -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #8b5cf6;
+            --accent: #06b6d4;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --bg-main: #0f172a;
+            --bg-secondary: #1e293b;
+            --bg-card: #1e293b;
+            --bg-accent: #334155;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: rgba(0, 0, 0, 0.4);
+            --shadow-lg: rgba(0, 0, 0, 0.6);
+            --gradient-primary: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+            --gradient-accent: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+        }
+        
+        body {
+            background: var(--bg-main) !important;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            color: var(--text-primary) !important;
+            min-height: 100vh;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient-primary);
+            border-radius: 5px;
+            border: 2px solid var(--bg-secondary);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary);
+        }
+        
+        .custom-navbar {
+            background: rgba(15, 23, 42, 0.95) !important;
+            backdrop-filter: blur(25px) saturate(180%);
+            border-bottom: 1px solid var(--border);
+            box-shadow: 0 2px 20px var(--shadow);
+            padding: 1.3rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-navbar .logo {
+            color: var(--primary) !important;
+            font-weight: 700;
+            font-size: 1.6rem;
+            letter-spacing: -0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        .custom-navbar .logo:hover {
+            color: var(--accent) !important;
+            transform: scale(1.05);
+        }
+        
+        .custom-navbar .link {
+            color: var(--text-secondary) !important;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+            margin: 0 0.3rem;
+        }
+        
+        .custom-navbar .link:hover {
+            color: var(--primary) !important;
+        }
+        
+        .custom-navbar .link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+        
+        .custom-navbar .link:hover::after {
+            width: 80%;
+        }
+        
+        .custom-navbar .btn-primary {
+            margin-left: 1rem;
+            padding: 0.6rem 1.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .header {
+            background: var(--bg-main);
+            position: relative;
+            overflow: hidden;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 6rem;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(139, 92, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08) 0%, transparent 50%);
+            animation: backgroundShift 15s ease-in-out infinite;
+        }
+        
+        .header::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+            filter: blur(100px);
+        }
+        
+        @keyframes backgroundShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        @keyframes rotate {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header-greeting {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 50px;
+            color: var(--primary);
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header-title {
+            color: var(--text-primary) !important;
+            font-weight: 800;
+            font-size: 5rem;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            position: relative;
+        }
+        
+        .header-title::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            animation: expandLine 1s ease-out 0.5s both;
+        }
+        
+        @keyframes expandLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 100px;
+                opacity: 1;
+            }
+        }
+        
+        .header-title .up {
+            display: none;
+        }
+        
+        .header-title .down {
+            display: block;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary) 50%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 5.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        
+        .header-title .down::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 3px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+            animation: expandUnderline 1s ease-out 0.8s both;
+        }
+        
+        @keyframes expandUnderline {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 200px;
+                opacity: 1;
+            }
+        }
+        
+        .header-subtitle {
+            color: var(--accent) !important;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-size: 1.3rem;
+            margin: 2rem 0 3rem;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            position: relative;
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: rgba(6, 182, 212, 0.1);
+            border-left: 3px solid var(--accent);
+            border-radius: 8px;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+        
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid var(--border);
+            animation: fadeInUp 1s ease-out 0.8s both;
+        }
+        
+        .header-stat {
+            text-align: center;
+        }
+        
+        .header-stat-number {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section {
+            background: var(--bg-main) !important;
+            position: relative;
+            padding: 6rem 0;
+        }
+        
+        .section.pt-0 {
+            padding-top: 4rem;
+        }
+        
+        .section-title {
+            color: var(--text-primary) !important;
+            font-weight: 700;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--accent) !important;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+        
+        .service-card,
+        .testimonial-card,
+        .blog-card,
+        .pricing-card {
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            padding: 2.5rem;
+            height: 100%;
+            box-shadow: 0 4px 20px var(--shadow);
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient-primary);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+        
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .service-card:hover,
+        .testimonial-card:hover,
+        .blog-card:hover,
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary) !important;
+            box-shadow: 
+                0 15px 40px var(--shadow-lg),
+                0 0 30px rgba(59, 130, 246, 0.2);
+        }
+        
+        .service-card .icon {
+            width: 70px;
+            height: 70px;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover .icon {
+            transform: scale(1.1) translateY(-5px);
+            background: var(--gradient-primary);
+            border-color: var(--primary);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .service-card .title,
+        .testimonial-card-title,
+        .blog-card-title,
+        .pricing-card-title {
+            color: var(--text-primary) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+        
+        .service-card:hover .title {
+            color: var(--primary) !important;
+        }
+        
+        .service-card .subtitle,
+        .testimonial-card-subtitle,
+        .blog-card-body p {
+            color: var(--text-secondary) !important;
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+        
+        .service-card .body {
+            padding: 0;
+        }
+        
+        .btn-primary {
+            background: var(--gradient-primary) !important;
+            border: none !important;
+            border-radius: 12px;
+            padding: 14px 32px;
+            font-weight: 600;
+            font-size: 1rem;
+            color: white !important;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-outline-primary {
+            border: 2px solid var(--primary) !important;
+            color: var(--primary) !important;
+            border-radius: 12px;
+            padding: 12px 30px;
+            font-weight: 600;
+            font-size: 1rem;
+            background: transparent !important;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-outline-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+        
+        .btn-outline-primary:hover::before {
+            left: 0;
+        }
+        
+        .btn-outline-primary:hover {
+            color: white !important;
+            border-color: var(--accent) !important;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .portfolio-card-overlay {
+            background: var(--gradient-primary) !important;
+            opacity: 0.95;
+        }
+        
+        .portfolio-card-caption h4 {
+            font-weight: 700;
+            font-size: 1.8rem;
+        }
+        
+        .pricing-card-header {
+            background: var(--gradient-primary);
+            border-radius: 20px 20px 0 0;
+            padding: 2.5rem;
+            text-align: center;
+        }
+        
+        .pricing-card-icon {
+            filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.3));
+        }
+        
+        .pricing-card-body {
+            padding: 2.5rem;
+        }
+        
+        .pricing-card-list p {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+        }
+        
+        .pricing-card-list p:hover {
+            color: var(--primary);
+            padding-left: 1.5rem;
+        }
+        
+        .pricing-card-footer {
+            padding: 2rem 2.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-top: 1px solid var(--border);
+            color: var(--primary) !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+        
+        .testimonial-card-body {
+            padding: 2.5rem;
+        }
+        
+        .blog-card-header {
+            overflow: hidden;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .blog-card-img {
+            transition: transform 0.5s ease;
+        }
+        
+        .blog-card:hover .blog-card-img {
+            transform: scale(1.1);
+        }
+        
+        .blog-card-body {
+            padding: 2.5rem;
+        }
+        
+        .blog-card-title {
+            font-weight: 700;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+        
+        .form-control {
+            font-size: 1rem;
+            background: var(--bg-card) !important;
+            border: 2px solid var(--border) !important;
+            color: var(--text-primary) !important;
+            border-radius: 12px;
+            padding: 14px 18px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control::placeholder {
+            color: var(--text-muted) !important;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary) !important;
+            background: var(--bg-accent) !important;
+            box-shadow: 
+                0 0 0 3px rgba(59, 130, 246, 0.1),
+                0 0 25px rgba(59, 130, 246, 0.2);
+        }
+        
+        .footer {
+            padding: 3rem 0;
+            margin-top: 4rem;
+            background: var(--bg-secondary) !important;
+            border-top: 1px solid var(--border);
+        }
+        
+        .footer a {
+            color: var(--primary) !important;
+            transition: all 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--accent) !important;
+        }
+        
+        .section-sm.bg-primary {
+            background: var(--gradient-primary) !important;
+        }
+        
+        .overlay {
+            background: rgba(15, 23, 42, 0.85) !important;
+        }
+        
+        .about-icon-holder {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto 3rem;
+        }
+        
+        .tech-icons-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            padding: 3rem;
+            background: var(--bg-card);
+            border: 2px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 
+                0 10px 30px var(--shadow),
+                0 0 20px rgba(59, 130, 246, 0.15);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tech-icons-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .tech-icons-container:hover {
+            transform: scale(1.03);
+            border-color: var(--primary);
+            box-shadow: 
+                0 15px 40px var(--shadow-lg),
+                0 0 30px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tech-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            transition: all 0.4s ease;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .tech-icon i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            transition: all 0.4s ease;
+        }
+        
+        .tech-icon:hover {
+            transform: translateY(-10px) scale(1.1) rotate(5deg);
+            background: var(--gradient-primary);
+            border-color: var(--primary);
+            box-shadow: 
+                0 12px 30px rgba(59, 130, 246, 0.4),
+                0 0 25px rgba(59, 130, 246, 0.3);
+        }
+        
+        .tech-icon:hover i {
+            color: white;
+            transform: scale(1.2);
+        }
+        
+        .tech-icon:nth-child(1) {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .tech-icon:nth-child(2) {
+            animation: float 3s ease-in-out infinite 0.5s;
+        }
+        
+        .tech-icon:nth-child(3) {
+            animation: float 3s ease-in-out infinite 1s;
+        }
+        
+        .tech-icon:nth-child(4) {
+            animation: float 3s ease-in-out infinite 1.5s;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .about-caption {
+            padding: 2.5rem;
+        }
+        
+        .about-caption p {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: var(--text-secondary);
+        }
+        
+        .portfolio-card {
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 30px var(--shadow);
+            border: 2px solid var(--border);
+        }
+        
+        .portfolio-card:hover {
+            border-color: var(--primary);
+            box-shadow: 
+                0 20px 50px var(--shadow-lg),
+                0 0 40px rgba(255, 107, 53, 0.3);
+        }
+        
+        .portfolio-card-img {
+            transition: transform 0.6s ease;
+        }
+        
+        .portfolio-card:hover .portfolio-card-img {
+            transform: scale(1.15);
+        }
+        
+        a {
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--warning);
+            text-shadow: 0 0 10px rgba(255, 200, 87, 0.5);
+        }
+        
+        .blog-card-link {
+            color: var(--primary) !important;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.05rem;
+        }
+        
+        .blog-card-link:hover {
+            color: var(--warning) !important;
+        }
+        
+        .blog-card-caption a {
+            color: var(--primary) !important;
+        }
+        
+        .blog-card-caption a:hover {
+            color: var(--warning) !important;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 3.5rem;
+            }
+            
+            .header-title .down {
+                font-size: 4rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .service-card,
+            .testimonial-card,
+            .blog-card,
+            .pricing-card {
+                margin-bottom: 2.5rem;
+                padding: 2rem;
+            }
+        }
+        
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 2.5rem;
+            }
+            
+            .header-title .down {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-card,
+            .testimonial-card,
+            .blog-card,
+            .pricing-card {
+                margin-bottom: 2rem;
+            }
+        }
+        
+        /* Loading animation */
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+
+    <!-- Page Navbar -->
+    <nav class="custom-navbar" data-spy="affix" data-offset-top="20">
+        <div class="container">
+            <a class="logo" href="#">Alicia Kailer</a>
+            <ul class="nav">
+                <li class="item">
+                    <a class="link" href="#home">Home</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#about">About</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#portfolio">Portfolio</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#testmonial">Expertise</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#blog">Experience</a>
+                </li>
+                <li class="item">
+                    <a class="link" href="#contact">Contact</a>
+                </li>
+                <li class="item ml-md-3">
+                    <a href="https://github.com/AliciaK91" target="_blank" class="btn btn-primary">GitHub</a>
+                </li>
+            </ul>
+            <a href="javascript:void(0)" id="nav-toggle" class="hamburger hamburger--elastic">
+                <div class="hamburger-box">
+                    <div class="hamburger-inner"></div>
+                </div>
+            </a>
+        </div>
+    </nav><!-- End of Page Navbar -->
+
+    <!-- page header -->
+    <header id="home" class="header">
+        <div class="overlay"></div>
+        <div class="header-content container">
+            <div class="header-greeting">Hello, I'm</div>
+            
+            <h1 class="header-title">
+                <span class="up">HI!</span>
+                <span class="down">Alicia Kailer</span>
+            </h1>
+            
+            <p class="header-subtitle">Site Reliability Engineer</p>
+            
+            <div class="header-actions">
+                <a href="https://github.com/AliciaK91" target="_blank" class="btn btn-primary">
+                    <i class="ti-github"></i> View GitHub
+                </a>
+                <a href="#about" class="btn btn-outline-primary">
+                    <i class="ti-arrow-down"></i> Learn More
+                </a>
+            </div>
+            
+            <div class="header-stats">
+                <div class="header-stat">
+                    <span class="header-stat-number">5+</span>
+                    <span class="header-stat-label">Years Experience</span>
+                </div>
+                <div class="header-stat">
+                    <span class="header-stat-number">99.9%</span>
+                    <span class="header-stat-label">Uptime Target</span>
+                </div>
+                <div class="header-stat">
+                    <span class="header-stat-number">24/7</span>
+                    <span class="header-stat-label">Monitoring</span>
+                </div>
+            </div>
+        </div>
+    </header><!-- end of page header -->
+
+    <!-- about section -->
+    <section class="section pt-0" id="about">
+        <!-- container -->
+        <div class="container text-center">
+            <!-- about wrapper -->
+            <div class="about">
+                <div class="about-icon-holder">
+                    <div class="tech-icons-container">
+                        <div class="tech-icon" data-icon="code">
+                            <i class="ti-code"></i>
+                        </div>
+                        <div class="tech-icon" data-icon="cloud">
+                            <i class="ti-cloud"></i>
+                        </div>
+                        <div class="tech-icon" data-icon="server">
+                            <i class="ti-server"></i>
+                        </div>
+                        <div class="tech-icon" data-icon="settings">
+                            <i class="ti-settings"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-caption">
+                    <p class="section-subtitle">Who Am I ?</p>
+                    <h2 class="section-title mb-3">About Me</h2>
+                    <p>
+                        I am a dedicated Site Reliability Engineer with a strong focus on ensuring the reliability, scalability, 
+                        and performance of cloud-based systems. My expertise lies in building and maintaining highly available 
+                        infrastructure, implementing monitoring and observability solutions, and optimizing system performance 
+                        across cloud platforms.
+                        <br><br>
+                        With hands-on experience in cloud platforms including AWS, Azure, and GCP, I specialize in infrastructure 
+                        automation, incident response, capacity planning, and implementing SRE best practices. I am passionate about 
+                        creating resilient systems, reducing toil through automation, and ensuring optimal service reliability 
+                        and performance in cloud environments.
+                    </p>
+                    <a href="https://github.com/AliciaK91" target="_blank" class="btn-rounded btn btn-outline-primary mt-4">View GitHub Profile</a>
+                </div>
+            </div><!-- end of about wrapper -->
+        </div><!-- end of container -->
+    </section> <!-- end of about section -->
+
+    <!-- service section -->
+    <section class="section" id="service">
+        <div class="container text-center">
+            <p class="section-subtitle">What I Do ?</p>
+            <h6 class="section-title mb-6">Services & Skills</h6>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/pencil-case.svg"
+                                alt="Infrastructure Reliability"
+                                class="icon">
+                            <h6 class="title">Infrastructure Reliability</h6>
+                            <p class="subtitle">Designing and maintaining highly available, scalable cloud infrastructure on AWS, 
+                                Azure, and GCP. Implementing redundancy, failover mechanisms, and disaster recovery strategies.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/responsive.svg"
+                                alt="Monitoring & Observability"
+                                class="icon">
+                            <h6 class="title">Monitoring & Observability</h6>
+                            <p class="subtitle">Implementing comprehensive monitoring solutions, logging, tracing, and alerting 
+                                systems. Using tools like Prometheus, Grafana, Datadog, and cloud-native monitoring services.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/toolbox.svg"
+                                alt="Incident Response"
+                                class="icon">
+                            <h6 class="title">Incident Response</h6>
+                            <p class="subtitle">Managing on-call rotations, incident response procedures, and post-incident 
+                                reviews. Implementing runbooks, escalation policies, and reducing MTTR (Mean Time To Recovery).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                    <div class="service-card">
+                        <div class="body">
+                            <img src="assets/imgs/analytics.svg"
+                                alt="Automation & CI/CD"
+                                class="icon">
+                            <h6 class="title">Automation & CI/CD</h6>
+                            <p class="subtitle">Automating infrastructure provisioning, deployments, and operational tasks. 
+                                Building CI/CD pipelines with Jenkins, GitLab CI, GitHub Actions, and cloud-native tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Skills Row -->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <h6 class="section-title mb-4">Technical Skills</h6>
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="service-card">
+                                <div class="body">
+                                    <h6 class="title">Cloud Platforms</h6>
+                                    <p class="subtitle">AWS, Azure, GCP, Kubernetes, Docker, Terraform</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="service-card">
+                                <div class="body">
+                                    <h6 class="title">Monitoring Tools</h6>
+                                    <p class="subtitle">Prometheus, Grafana, Datadog, CloudWatch, New Relic</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="service-card">
+                                <div class="body">
+                                    <h6 class="title">Automation & IaC</h6>
+                                    <p class="subtitle">Terraform, Ansible, Puppet, Chef, CloudFormation</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3 mb-3">
+                            <div class="service-card">
+                                <div class="body">
+                                    <h6 class="title">CI/CD & DevOps</h6>
+                                    <p class="subtitle">Jenkins, GitLab CI, GitHub Actions, ArgoCD, Spinnaker</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- end of row -->
+        </div>
+    </section><!-- end of service section -->
+
+    <!-- portfolio section -->
+    <section class="section" id="portfolio">
+        <div class="container text-center">
+            <p class="section-subtitle">What I Did ?</p>
+            <h6 class="section-title mb-6">Projects & Portfolio</h6>
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="https://github.com/AliciaK91" target="_blank" class="portfolio-card">
+                        <img src="assets/imgs/folio-1.jpg" class="portfolio-card-img"
+                            alt="Infrastructure as Code">
+                        <span class="portfolio-card-overlay">
+                            <span class="portfolio-card-caption">
+                                <h4>Infrastructure as Code</h4>
+                                    <p class="font-weight-normal">Category: Terraform & Cloud Automation</p>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://github.com/AliciaK91" target="_blank" class="portfolio-card">
+                        <img class="portfolio-card-img" src="assets/imgs/folio-2.jpg" class="img-responsive rounded"
+                            alt="Monitoring Solutions">
+                        <span class="portfolio-card-overlay">
+                            <span class="portfolio-card-caption">
+                                <h4>Monitoring Solutions</h4>
+                                    <p class="font-weight-normal">Category: Observability & Alerting</p>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="https://github.com/AliciaK91" target="_blank" class="portfolio-card">
+                        <img class="portfolio-card-img" src="assets/imgs/folio-3.jpg" class="img-responsive rounded"
+                            alt="Kubernetes Operations">
+                        <span class="portfolio-card-overlay">
+                            <span class="portfolio-card-caption">
+                                <h4>Kubernetes Operations</h4>
+                                    <p class="font-weight-normal">Category: Container Orchestration</p>
+                            </span>
+                        </span>
+                    </a>
+                </div>
+            </div><!-- end of row -->
+        </div><!-- end of container -->
+    </section> <!-- end of portfolio section -->
+
+    <!-- expertise section -->
+    <section class="section" id="pricing">
+        <div class="container text-center">
+            <p class="section-subtitle">My Expertise</p>
+            <h6 class="section-title mb-6">Areas of Specialization</h6>
+            <!-- row -->
+            <div class="pricing-wrapper">
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="assets/imgs/scooter.svg"
+                            alt="Infrastructure Reliability">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Infrastructure Reliability</h6>
+                        <div class="pricing-card-list">
+                            <p>AWS EC2, ECS, EKS & Auto Scaling</p>
+                            <p>Azure VM Scale Sets & AKS</p>
+                            <p>GCP GKE & Compute Engine</p>
+                            <p>High Availability Architecture</p>
+                            <p>Disaster Recovery Planning</p>
+                            <p>Capacity Planning & Optimization</p>
+                        </div>
+                    </div>
+                    <div class="pricing-card-footer">
+                        <span>Infrastructure</span>
+                        <span>SRE</span>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="assets/imgs/shipped.svg"
+                            alt="Monitoring & Observability">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Monitoring & Observability</h6>
+                        <div class="pricing-card-list">
+                            <p>Prometheus & Grafana Stack</p>
+                            <p>CloudWatch, Azure Monitor, Stackdriver</p>
+                            <p>Distributed Tracing (Jaeger, Zipkin)</p>
+                            <p>Log Aggregation & Analysis</p>
+                            <p>Alerting & On-Call Management</p>
+                            <p>SLI/SLO/SLA Implementation</p>
+                        </div>
+                    </div>
+                    <div class="pricing-card-footer">
+                        <span>Observability</span>
+                        <span>Expert</span>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-card-header">
+                        <img class="pricing-card-icon" src="assets/imgs/startup.svg"
+                            alt="Automation & IaC">
+                    </div>
+                    <div class="pricing-card-body">
+                        <h6 class="pricing-card-title">Automation & IaC</h6>
+                        <div class="pricing-card-list">
+                            <p>Terraform Infrastructure Provisioning</p>
+                            <p>Ansible Configuration Management</p>
+                            <p>CI/CD Pipeline Automation</p>
+                            <p>Kubernetes Operator Development</p>
+                            <p>Scripting & Tooling (Python, Go, Bash)</p>
+                            <p>Toil Reduction & Automation</p>
+                        </div>
+                    </div>
+                    <div class="pricing-card-footer">
+                        <span>Automation</span>
+                        <span>Specialist</span>
+                    </div>
+                </div>
+
+            </div><!-- end of pricing wrapper -->
+        </div> <!-- end of container -->
+    </section><!-- end of expertise section -->
+
+    <!-- section -->
+    <section class="section-sm bg-primary">
+        <!-- container -->
+        <div class="container text-center text-sm-left">
+            <!-- row -->
+            <div class="row align-items-center">
+                <div class="col-sm offset-md-1 mb-4 mb-md-0">
+                    <h6 class="title text-light">Want to work with me?</h6>
+                    <p class="m-0 text-light">Always feel Free to Contact & Hire me</p>
+                </div>
+                <div class="col-sm offset-sm-2 offset-md-3">
+                    <a href="https://github.com/AliciaK91" target="_blank" class="btn btn-lg my-font btn-light rounded">View GitHub</a>
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </section> <!-- end of section -->
+
+    <!-- competencies section -->
+    <section class="section" id="testmonial">
+        <div class="container text-center">
+            <p class="section-subtitle">Professional Focus</p>
+            <h6 class="section-title mb-6">Core Competencies</h6>
+
+            <!-- row -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-body">
+                            <p class="testimonial-card-subtitle">Specialized in ensuring the reliability and performance of 
+                                cloud infrastructure across AWS, Azure, and GCP. Expert in building highly available systems, 
+                                implementing comprehensive monitoring solutions, and managing incident response. Proficient in 
+                                designing resilient architectures that maintain high uptime and optimal performance.</p>
+                            <h6 class="testimonial-card-title">Cloud Reliability Engineer</h6>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card">
+                        <div class="testimonial-card-body">
+                            <p class="testimonial-card-subtitle">Experienced in infrastructure automation, observability, and 
+                                SRE best practices. Proficient in Terraform, Kubernetes, monitoring tools, and automation 
+                                frameworks. Skilled in reducing toil, implementing SLIs/SLOs, managing on-call rotations, 
+                                and ensuring system reliability through proactive measures and incident management.</p>
+                            <h6 class="testimonial-card-title">Infrastructure & Automation Specialist</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!-- end of container -->
+    </section> <!-- end of competencies section -->
+
+    <!-- experience section -->
+    <section class="section" id="blog">
+        <!-- container -->
+        <div class="container text-center">
+            <p class="section-subtitle">Professional Experience</p>
+            <h6 class="section-title mb-6">Key Areas of Expertise</h6>
+            <!-- blog-wrapper -->
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img-1.jpg" class="blog-card-img"
+                        alt="Cloud Backend System Development">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Cloud Infrastructure Reliability & SRE Practices</h5>
+
+                        <p class="blog-card-caption">
+                            <a href="#">By: Alicia Kailer</a>
+                            <a href="https://github.com/AliciaK91" target="_blank"><i class="ti-github"></i> GitHub</a>
+                        </p>
+                        <p>Designing and maintaining highly reliable, scalable cloud infrastructure across AWS, Azure, and GCP. 
+                            Specializing in infrastructure automation, monitoring, incident response, and implementing SRE best 
+                            practices. Creating resilient systems that maintain high availability and optimal performance 
+                            through proactive reliability engineering.</p>
+
+                        <p><b>Key Focus Areas:</b> Infrastructure as Code (Terraform, CloudFormation), Kubernetes Operations & 
+                            Management, Monitoring & Observability (Prometheus, Grafana, CloudWatch), Incident Response & On-Call 
+                            Management, SLI/SLO/SLA Implementation, Capacity Planning, Disaster Recovery, and Performance 
+                            Optimization.</p>
+                        <p>Experienced in managing cloud infrastructure with focus on reliability, scalability, and automation. 
+                            Proficient in implementing comprehensive monitoring solutions, managing incidents, reducing toil through 
+                            automation, and ensuring systems meet reliability targets. Skilled in Kubernetes, containerization, 
+                            CI/CD pipelines, and cloud-native technologies.</p>
+
+                        <a href="https://github.com/AliciaK91" target="_blank" class="blog-card-link">View Projects on GitHub <i class="ti-angle-double-right"></i></a>
+                </div>
+            </div><!-- end of blog wrapper -->
+
+            <!-- blog-wrapper -->
+            <div class="blog-card">
+                <div class="blog-card-header">
+                    <img src="assets/imgs/img-2.jpg" class="blog-card-img"
+                        alt="Monitoring & Automation">
+                </div>
+                <div class="blog-card-body">
+                    <h5 class="blog-card-title">Monitoring, Observability & Automation</h5>
+
+                        <p class="blog-card-caption">
+                            <a href="#">By: Alicia Kailer</a>
+                            <a href="https://github.com/AliciaK91" target="_blank"><i class="ti-github"></i> GitHub</a>
+                        </p>
+
+                        <p>Implementing comprehensive monitoring and observability solutions for cloud infrastructure. Building 
+                            dashboards, setting up alerting, managing on-call rotations, and conducting post-incident reviews. 
+                            Automating operational tasks, infrastructure provisioning, and deployments to reduce toil and 
+                            improve system reliability.</p>
+                        <p>Experienced with monitoring tools including Prometheus, Grafana, Datadog, CloudWatch, and Azure Monitor. 
+                            Skilled in distributed tracing, log aggregation, and implementing SLIs/SLOs. Proficient in automation 
+                            with Terraform, Ansible, Python, Go, and Bash scripting. Creating runbooks, automating incident response, 
+                            and building self-healing systems to improve overall reliability and reduce manual intervention.</p>
+
+                        <a href="https://github.com/AliciaK91" target="_blank" class="blog-card-link">Explore SRE Projects <i class="ti-angle-double-right"></i></a>
+                </div>
+            </div><!-- end of blog wrapper -->
+
+        </div><!-- end of container -->
+    </section><!-- end of experience section -->
+
+    <!-- contact section -->
+    <section class="section" id="contact">
+        <div class="container text-center">
+            <p class="section-subtitle">How can you communicate?</p>
+            <h6 class="section-title mb-5">Contact Me</h6>
+            <div class="mb-5">
+                <p class="mb-3">Connect with me on GitHub or reach out for Site Reliability Engineering, cloud infrastructure management, monitoring solutions, or SRE consulting services.</p>
+                <a href="https://github.com/AliciaK91" target="_blank" class="btn btn-primary btn-lg">
+                    <i class="ti-github"></i> Visit My GitHub Profile
+                </a>
+            </div>
+            <!-- contact form -->
+            <form action="" class="contact-form col-md-10 col-lg-8 m-auto">
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <input type="text" size="50" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <input type="email" class="form-control" placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <textarea name="comment" id="comment" rows="6" class="form-control"
+                            placeholder="Write Something"></textarea>
+                    </div>
+                    <div class="form-group col-sm-12 mt-3">
+                        <input type="submit" value="Send Message" class="btn btn-outline-primary rounded">
+                    </div>
+                </div>
+            </form><!-- end of contact form -->
+        </div><!-- end of container -->
+    </section><!-- end of contact section -->
+
+    <!-- footer -->
+    <div class="container">
+        <footer class="footer">
+            <p class="mb-0">Copyright
+                <script>document.write(new Date().getFullYear())</script> &copy; <a
+                    href="https://github.com/AliciaK91" target="_blank">Alicia Kailer</a> | Site Reliability Engineer
+            </p>
+            <div class="social-links text-right m-auto ml-sm-auto">
+                <a href="https://github.com/AliciaK91" target="_blank" class="link" title="GitHub"><i class="ti-github"></i></a>
+                <a href="https://github.com/AliciaK91" target="_blank" class="link" title="GitHub Profile"><i class="ti-link"></i></a>
+            </div>
+        </footer>
+    </div> <!-- end of page footer -->
+
+    <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Meyawo js -->
+    <script src="assets/js/meyawo.js"></script>
+
+</body>
+
+</html>
